@@ -132,7 +132,9 @@ class OpenvswitchMechanismDriver(mech_agent.SimpleAgentMechanismDriverBase):
                 'switchdev' not in capabilities):
             LOG.debug("Refusing to bind due to unsupported vnic_type: %s with "
                       "no switchdev capability", portbindings.VNIC_DIRECT)
-            return
+            # TODO(johngarbutt) add config to make this optional
+            # rather than this hack!
+            #return
         super(OpenvswitchMechanismDriver, self).bind_port(context)
 
     def get_supported_vif_type(self, agent):
